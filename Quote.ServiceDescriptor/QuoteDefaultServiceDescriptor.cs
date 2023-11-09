@@ -1,5 +1,7 @@
 ﻿using LightInject;
 using Quote.Contracts;
+using System.Net.Http
+    ;
 
 namespace Quote.ServiceDescriptor
 {
@@ -11,6 +13,7 @@ namespace Quote.ServiceDescriptor
             container.Register<IMapper, Mapper>();
             container.Register<IServiceWrapper, ServiceApitude>();
             container.Register<IQuoteEngine, QuoteService>();
+            container.Register<IMarginProvider, MarginProvider>();
         }
     }
 }

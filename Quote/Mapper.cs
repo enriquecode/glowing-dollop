@@ -5,6 +5,11 @@ using Quote.Contracts;
 using Quote.Models;
 using Quote.Models.Provider;
 
+using System.Net;
+//using System.Collections.Specialized;
+//using System.Text;
+//using System.IO;
+
 namespace Quote
 {
     public class Mapper : IMapper
@@ -18,6 +23,7 @@ namespace Quote
         public const int AdultAge = 25;
         private readonly ExternalProvider provider = ExternalProvider.HotelBedsTours;
         private readonly IMarginProvider marginProvider;
+        
 
         public Mapper(IMarginProvider marginProvider)
         {
@@ -94,7 +100,9 @@ namespace Quote
                 tourQuotes = tourQuotes.Where(w => selectedServicesCodes.Contains(w.ContractService.ServiceCode)).ToList();
             }
 
-            var baseSelectedQuote = tourQuotes.First();
+            //esta es la linea que hace que falle lo del ejercicio 1
+            //var baseSelectedQuote = tourQuotes.First();
+            var baseSelectedQuote = tourQuotes.FirstOrDefault();
             var margin = .25;
             TourCalculatedQuote calculatedQuote = null;
             if (request.RetrieveOptions.GetCalculatedQuote)
